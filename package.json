@@ -4,10 +4,12 @@
   "description": "A list of OSS packages that are known to require lifecycle scripts to function properly",
   "main": "index.js",
   "files": [
+    "index.js",
     "allow.json",
     "pnpmfile.cjs"
   ],
   "scripts": {
+    "test": "node test.js",
     "update-list": "ts-node updateList.ts"
   },
   "keywords": [
