@@ -9,7 +9,7 @@ test('TRUSTED_PACKAGE_NAMES', () => {
 })
 
 test('do not reenable dependency builds', () => {
-  const config =  {
+  const config = {
     ignoredBuiltDependencies: ['esbuild'],
   }
   pnpmfile.hooks.updateConfig(config)
