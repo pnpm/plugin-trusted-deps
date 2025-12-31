@@ -9,6 +9,7 @@
     "pnpmfile.cjs"
   ],
   "scripts": {
+    "lint": "eslint .",
     "test": "node test.js",
     "update-list": "ts-node updateList.ts"
   },
@@ -16,8 +17,10 @@
     "pnpm-config"
   ],
   "license": "MIT",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.27.0",
   "devDependencies": {
+    "eslint": "^9.39.2",
+    "neostandard": "^0.12.2",
     "ts-node": "^10.9.2"
   },
   "funding": "https://opencollective.com/pnpm",

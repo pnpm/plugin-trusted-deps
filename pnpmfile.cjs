@@ -6,7 +6,6 @@ module.exports = {
       }
       config.onlyBuiltDependencies.push(...require('./allow.json'))
       return config
-    }
-  }
+    },
+  },
 }
-
