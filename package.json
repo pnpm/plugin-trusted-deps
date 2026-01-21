@@ -11,13 +11,21 @@
   "scripts": {
     "lint": "eslint .",
     "test": "node test.js",
-    "update-list": "ts-node updateList.ts"
+    "update-list": "ts-node updateList.ts",
+    "prepublishOnly": "pnpm update-list"
   },
   "keywords": [
     "pnpm-config"
   ],
   "license": "MIT",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.1",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24",
+      "onFail": "download"
+    }
+  },
   "devDependencies": {
     "eslint": "^9.39.2",
     "neostandard": "^0.12.2",
