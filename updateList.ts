@@ -26,7 +26,22 @@ async function fetchToJson (
   const outPath = `allow.json`
   await writeFile(outPath, JSON.stringify(combined, null, 2), "utf8")
 
+  // Generate allowBuilds.json (Record<string, boolean>)
+  const { createRequire } = await import('node:module')
+  const require = createRequire(import.meta.url)
+  const untrusted: string[] = require('./untrusted.js')
+  const allowBuilds: Record<string, boolean> = {}
+  for (const pkg of untrusted.sort()) {
+    allowBuilds[pkg] = false
+  }
+  for (const pkg of combined) {
+    allowBuilds[pkg] = true
+  }
+  const allowBuildsPath = 'allowBuilds.json'
+  await writeFile(allowBuildsPath, JSON.stringify(allowBuilds, null, 2), "utf8")
+
   console.log(`✅  Saved ${combined.length} items to ${outPath} (${bunEntries.length} from bun + ${pnpmEntries.length} from pnpm-allow.json)`)
+  console.log(`✅  Saved ${Object.keys(allowBuilds).length} items to ${allowBuildsPath}`)
 }
 
 fetchToJson().catch((err) => {

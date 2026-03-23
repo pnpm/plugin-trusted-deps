@@ -6,6 +6,8 @@
   "files": [
     "index.js",
     "allow.json",
+    "allowBuilds.json",
+    "untrusted.js",
     "pnpmfile.cjs"
   ],
   "scripts": {

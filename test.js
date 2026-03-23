@@ -17,6 +17,15 @@ test('populates onlyBuiltDependencies for pnpm < 11', () => {
   assert.equal(config.allowBuilds, undefined)
 })
 
+test('excludes untrusted packages for pnpm < 11', () => {
+  const config = {
+    packageManager: { version: '10.28.1' },
+  }
+  pnpmfile.hooks.updateConfig(config)
+  assert(!config.onlyBuiltDependencies.includes('core-js'))
+  assert(config.ignoredBuiltDependencies.includes('core-js'))
+})
+
 test('do not reenable dependency builds for pnpm < 11', () => {
   const config = {
     packageManager: { version: '10.28.1' },
@@ -36,6 +45,23 @@ test('populates allowBuilds for pnpm >= 11', () => {
   assert(!Array.isArray(config.allowBuilds))
   assert.equal(config.allowBuilds['@apollo/rover'], true)
   assert.equal(config.onlyBuiltDependencies, undefined)
+})
+
+test('excludes untrusted packages for pnpm >= 11', () => {
+  const config = {
+    packageManager: { version: '11.0.0' },
+  }
+  pnpmfile.hooks.updateConfig(config)
+  assert.equal(config.allowBuilds['core-js'], false)
+})
+
+test('respects user override of untrusted package for pnpm >= 11', () => {
+  const config = {
+    packageManager: { version: '11.0.0' },
+    allowBuilds: { 'core-js': true },
+  }
+  pnpmfile.hooks.updateConfig(config)
+  assert.equal(config.allowBuilds['core-js'], true)
 })
 
 test('do not reenable dependency builds for pnpm >= 11', () => {
