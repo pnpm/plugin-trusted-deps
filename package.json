@@ -20,7 +20,7 @@
     "pnpm-config"
   ],
   "license": "MIT",
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@11.0.0-beta.2",
   "devEngines": {
     "runtime": {
       "name": "node",
