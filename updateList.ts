@@ -35,7 +35,9 @@ async function fetchToJson (
     allowBuilds[pkg] = false
   }
   for (const pkg of combined) {
-    allowBuilds[pkg] = true
+    if (!(pkg in allowBuilds)) {
+      allowBuilds[pkg] = true
+    }
   }
   const allowBuildsPath = 'allowBuilds.json'
   await writeFile(allowBuildsPath, JSON.stringify(allowBuilds, null, 2), "utf8")

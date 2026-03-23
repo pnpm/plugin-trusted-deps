@@ -12,7 +12,6 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "pretest": "pnpm update-list",
     "test": "node test.js",
     "update-list": "ts-node updateList.ts",
     "prepublishOnly": "pnpm update-list"
