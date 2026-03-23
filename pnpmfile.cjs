@@ -4,9 +4,15 @@ module.exports = {
       const pnpmMajor = parseInt(config.packageManager?.version?.split('.')[0] ?? '0', 10)
       const useAllowBuilds = pnpmMajor >= 11
       const defaultAllowed = require('./allow.json')
+      const defaultUntrusted = require('./untrusted.js')
       if (useAllowBuilds) {
         if (config.allowBuilds == null) {
           config.allowBuilds = {}
+        }
+        for (const untrusted of defaultUntrusted) {
+          if (config.allowBuilds[untrusted] == null) {
+            config.allowBuilds[untrusted] = false
+          }
         }
         for (const allowed of defaultAllowed) {
           if (config.allowBuilds[allowed] == null) {
@@ -17,14 +23,14 @@ module.exports = {
         if (config.onlyBuiltDependencies == null) {
           config.onlyBuiltDependencies = []
         }
-        if (!config.ignoredBuiltDependencies?.length) {
-          config.onlyBuiltDependencies.push(...defaultAllowed)
-        } else {
-          const ignored = new Set(config.ignoredBuiltDependencies)
-          for (const allowed of defaultAllowed) {
-            if (!ignored.has(allowed)) {
-              config.onlyBuiltDependencies.push(allowed)
-            }
+        if (config.ignoredBuiltDependencies == null) {
+          config.ignoredBuiltDependencies = []
+        }
+        config.ignoredBuiltDependencies.push(...defaultUntrusted)
+        const ignored = new Set(config.ignoredBuiltDependencies)
+        for (const allowed of defaultAllowed) {
+          if (!ignored.has(allowed)) {
+            config.onlyBuiltDependencies.push(allowed)
           }
         }
       }
