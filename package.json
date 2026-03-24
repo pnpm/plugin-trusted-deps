@@ -3,8 +3,18 @@
   "version": "0.3.0-0",
   "description": "A list of OSS packages that are known to require lifecycle scripts to function properly",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./allowBuilds.json": "./allowBuilds.json",
+    "./allow.json": "./allow.json",
+    "./pnpmfile.cjs": "./pnpmfile.cjs"
+  },
   "files": [
     "index.js",
+    "index.mjs",
     "allow.json",
     "allowBuilds.json",
     "untrusted.js",
@@ -12,8 +22,8 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "node test.js",
-    "update-list": "ts-node updateList.ts",
+    "test": "node updateList.mjs && node test.js && node test-esm.mjs",
+    "update-list": "node updateList.mjs",
     "prepublishOnly": "pnpm update-list"
   },
   "keywords": [
@@ -30,8 +40,7 @@
   },
   "devDependencies": {
     "eslint": "^9.39.2",
-    "neostandard": "^0.12.2",
-    "ts-node": "^10.9.2"
+    "neostandard": "^0.12.2"
   },
   "funding": "https://opencollective.com/pnpm",
   "repository": {
