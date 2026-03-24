@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "pnpm update-list && node test.js && node test-esm.mjs",
-    "update-list": "ts-node updateList.ts",
+    "update-list": "node --experimental-strip-types updateList.mts",
     "prepublishOnly": "pnpm update-list"
   },
   "keywords": [
@@ -40,8 +40,7 @@
   },
   "devDependencies": {
     "eslint": "^9.39.2",
-    "neostandard": "^0.12.2",
-    "ts-node": "^10.9.2"
+    "neostandard": "^0.12.2"
   },
   "funding": "https://opencollective.com/pnpm",
   "repository": {
