@@ -1,6 +1,7 @@
 const neostandard = require('neostandard')
 
 module.exports = [
+  { ignores: ['index.mjs'] },
   ...neostandard(),
   {
     rules: {
