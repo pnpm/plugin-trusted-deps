@@ -18,7 +18,7 @@ async function fetchToJson (
 
   // Read our custom pnpm-allow.json
   const pnpmAllowJson = await readFile('pnpm-allow.json', 'utf8')
-  const pnpmEntries: string[] = JSON.parse(pnpmAllowJson)
+  const pnpmEntries = JSON.parse(pnpmAllowJson)
 
   // Merge, deduplicate, and sort
   const combined = [...new Set([...bunEntries, ...pnpmEntries])].sort()
@@ -29,8 +29,8 @@ async function fetchToJson (
   // Generate allowBuilds.json (Record<string, boolean>)
   const { createRequire } = await import('node:module')
   const require = createRequire(import.meta.url)
-  const untrusted: string[] = require('./untrusted.js')
-  const allowBuilds: Record<string, boolean> = {}
+  const untrusted = require('./untrusted.js')
+  const allowBuilds = {}
   for (const pkg of untrusted.sort()) {
     allowBuilds[pkg] = false
   }

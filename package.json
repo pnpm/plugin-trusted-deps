@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "pnpm update-list && node test.js && node test-esm.mjs",
-    "update-list": "node --experimental-strip-types updateList.mts",
+    "update-list": "node updateList.mjs",
     "prepublishOnly": "pnpm update-list"
   },
   "keywords": [
