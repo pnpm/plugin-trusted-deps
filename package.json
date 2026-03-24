@@ -21,6 +21,7 @@
     "pnpmfile.cjs"
   ],
   "scripts": {
+    "prepare": "pnpm update-list",
     "lint": "eslint .",
     "test": "node test.js && node test-esm.mjs",
     "update-list": "ts-node updateList.ts",
