@@ -3,8 +3,18 @@
   "version": "0.3.0-0",
   "description": "A list of OSS packages that are known to require lifecycle scripts to function properly",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    },
+    "./allowBuilds.json": "./allowBuilds.json",
+    "./allow.json": "./allow.json",
+    "./pnpmfile.cjs": "./pnpmfile.cjs"
+  },
   "files": [
     "index.js",
+    "index.mjs",
     "allow.json",
     "allowBuilds.json",
     "untrusted.js",
@@ -12,7 +22,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "node test.js",
+    "test": "node test.js && node test-esm.mjs",
     "update-list": "ts-node updateList.ts",
     "prepublishOnly": "pnpm update-list"
   },
