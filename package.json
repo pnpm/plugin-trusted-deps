@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "pnpm update-list && node test.js && node test-esm.mjs",
+    "test": "node updateList.mjs && node test.js && node test-esm.mjs",
     "update-list": "node updateList.mjs",
     "prepublishOnly": "pnpm update-list"
   },
