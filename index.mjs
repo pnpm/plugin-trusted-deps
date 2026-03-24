@@ -1,6 +1,4 @@
-import { createRequire } from 'node:module'
+import TRUSTED_PACKAGE_NAMES from './allow.json' with { type: 'json' }
+import DEFAULT_ALLOW_BUILDS from './allowBuilds.json' with { type: 'json' }
 
-const require = createRequire(import.meta.url)
-
-export const TRUSTED_PACKAGE_NAMES = require('./allow.json')
-export const DEFAULT_ALLOW_BUILDS = require('./allowBuilds.json')
+export { TRUSTED_PACKAGE_NAMES, DEFAULT_ALLOW_BUILDS }
