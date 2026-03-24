@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'assert'
-import { TRUSTED_PACKAGE_NAMES, DEFAULT_ALLOW_BUILDS } from '@pnpm/plugin-trusted-deps'
+import { TRUSTED_PACKAGE_NAMES, DEFAULT_ALLOW_BUILDS } from './index.mjs'
 
 test('ESM named export: TRUSTED_PACKAGE_NAMES', () => {
   assert(Array.isArray(TRUSTED_PACKAGE_NAMES))
