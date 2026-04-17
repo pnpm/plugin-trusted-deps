@@ -1,5 +1,6 @@
 [
   "@airbnb/node-memwatch",
+  "@anthropic-ai/claude-code",
   "@apollo/protobufjs",
   "@apollo/rover",
   "@appsignal/nodejs",
